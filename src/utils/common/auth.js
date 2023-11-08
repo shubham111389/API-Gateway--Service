@@ -18,7 +18,8 @@ function createToken(input) {
         console.log(error);
         throw error;
     }
-    function verifyToken(token) {
+}
+function verifyToken(token) {
         try {
             return jwt.verify(token, ServerConfig.JWT_SECRET);
         } catch(error) {
@@ -27,10 +28,11 @@ function createToken(input) {
         }
     }
     
-}
+
 
 module.exports = {
     checkPassword,
     createToken,
     verifyToken
+
 }

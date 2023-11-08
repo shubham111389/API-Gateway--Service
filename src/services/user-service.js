@@ -20,7 +20,7 @@ async function create(data) {
             throw new AppError(explanation, StatusCodes.BAD_REQUEST);
         }
         throw new AppError('Cannot create a new user object', StatusCodes.INTERNAL_SERVER_ERROR);
-    }
+    }}
     async function signin(data) {
         try {
             const user = await userRepo.getUserByEmail(data.email);
@@ -56,11 +56,15 @@ async function create(data) {
             if(error.name == 'JsonWebTokenError') {
                 throw new AppError('Invalid JWT token', StatusCodes.BAD_REQUEST);
             }
+            if(error.name == 'TokenExpiredError') {
+                throw new AppError('JWT token expired', StatusCodes.BAD_REQUEST);
+            }
             console.log(error);
             throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR);
         }
+        
     }
-}
+
 
 module.exports = {
     create,
