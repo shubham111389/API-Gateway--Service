@@ -16,12 +16,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(limiter);
 
-app.use('/flightsService', createProxyMiddleware({ target: ServerConfig.FLIGHT_SERVICE, changeOrigin: true, pathRewrite: {'^/flightsService' : '/'} }));
-app.use('/flightsService', createProxyMiddleware({ 
+/**app.use('/flightsService', createProxyMiddleware({ 
     target: ServerConfig.FLIGHT_SERVICE, 
     changeOrigin: true, 
     pathRewrite: {'^/flightsService' : '/'} 
-}));
+}));**/
 
 app.use('/api', apiRoutes);
 

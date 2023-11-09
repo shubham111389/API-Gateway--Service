@@ -26,6 +26,7 @@ async function signup(req, res) {
                 .json(ErrorResponse);
     }
 }
+
 async function signin(req, res) {
     try {
         const user = await UserService.signin({
@@ -43,8 +44,8 @@ async function signin(req, res) {
                 .status(error.statusCode)
                 .json(ErrorResponse);
     }
-    
 }
+
 async function addRoleToUser(req, res) {
     try {
         const user = await UserService.addRoletoUser({
